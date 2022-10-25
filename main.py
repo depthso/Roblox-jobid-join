@@ -1,4 +1,4 @@
-import time, requests, pathlib, urllib.parse, os
+import time, requests, pathlib, urllib.parse, os, threading
 
 currentpath = str(pathlib.Path(__file__).parent.absolute())
 
@@ -50,14 +50,17 @@ def startroblox(PlaceID: int, JobID: str, Cookie: str):
 
     timestamp = '{0:.0f}'.format(round(time.time() * 1000))
     url = urllib.parse.quote(
-        f'https://assetgame.roblox.com/game/PlaceLauncher.ashx?request=RequestGame{"Job"}&placeId={PlaceID}{"&gameId=" + JobID}&isPlayTogetherGame=false&isTeleport=true+robloxLocale:en_us+gameLocale:en_us+channel:')
+        #f'https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGameJob%26browserTrackerId%3D147062882894%26placeId%3D{PlaceID}%26gameId%{JobID}%26isPlayTogetherGame%3Dfalse+browsertrackerid:147062882894+robloxLocale:en_us+gameLocale:en_us+channel:+LaunchExp:InApp'
+        f'https://assetgame.roblox.com/game/PlaceLauncher.ashx?request=RequestGame{"Job"}&browserTrackerId=147062882894&placeId={PlaceID}{"&gameId=" + JobID}&isPlayTogetherGame=false+browsertrackerid:147062882894+robloxLocale:en_us+gameLocale:en_us+channel:'
+    )
+
     os.startfile(f"roblox-player:1+launchmode:play+gameinfo:{ticket}+launchtime:{timestamp}+placelauncherurl:{url}")
 
     time.sleep(5)
 
 config = {
     "Cookies": [
-        "Cookie Here"
+        "Cookie"
     ]
 }
 
@@ -74,9 +77,12 @@ I recommend using this browser extension:
 You could use the cookies for 
 
 for Cookie in config["Cookies"]:
-    startroblox(PlaceID, JobID, Cookie)
-    time.sleep(4)
+    print(Cookie)
+    threading.Thread(target=startroblox, args=(PlaceID, JobID, Cookie)).start()
+    time.sleep(15)
 
 """
+PlaceID = 5373028495
+JobID = "9580db4a-e38b-4067-b6d4-10ffa63e229c"
 
-startroblox(PlaceID=4984400432, JobID="8ffdf369-fa67-4226-9f64-8748b335836b", Cookie=Cookies[0])
+startroblox(PlaceID=int(PlaceID), JobID=JobID, Cookie=Cookies[0])
