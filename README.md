@@ -6,3 +6,6 @@ Many thanks to ic3w0lf22.
 
 
 The program was written in pycharm and the file was placed under ` C:\Users\depso\PycharmProjects\RobloxJoiner\main.py ` if it doesn't work because im not sure about the paths.
+
+
+This works with `Synapse` and `Muitiple` rbx!
