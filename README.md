@@ -9,3 +9,8 @@ The program was written in pycharm and the file was placed under ` C:\Users\deps
 
 
 This works with `Synapse` and `Muitiple` rbx!
+
+
+http://www.editthiscookie.com/
+
+![value](https://user-images.githubusercontent.com/86912923/197848338-66885404-947c-4ef0-b7f1-4436b9c3b73a.png)
